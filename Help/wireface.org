@@ -1,4 +1,50 @@
-#+TITLE: WireFace an AudioVisual Installation
+#+LaTeX_HEADER: \usepackage{fontspec,xltxtra,xunicode} 
+#+LaTeX_HEADER: \setromanfont[Mapping=tex-text]{Batang} 
+
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks,%
+#+LATEX_HEADER:     citecolor=black,%
+#+LATEX_HEADER:     filecolor=black,%
+#+LATEX_HEADER:     linkcolor=black,%
+#+LATEX_HEADER:     urlcolor=blue
+#+LATEX_HEADER: }
+
+#+TITLE: WireFace: an AudioVisual Installation
 #+AUTHOR: Aris Bezas
 
- 
+
+* Περιγραφή του έργου
+(Anti-Concept) 
+#+LATEX: \newline
+Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί όπως μπορεί να το αντιληφθεί μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. 
+#+LATEX: \newline
+Ημερομηνία δημιουργίας έργου:  Ιούλιος 2011
+
+* Εγκατάσταση - Τεχνικές 
+- Mapping Projection
+- Video delay
+- SoundIn
+- Computer Vision
+- Sound Diffusion
+* Τεχνικά χαρακτηριστικά - setup:
+- SuperCollider an environment and programming language for real time audio synthesis and algorithmic composition. 
+- openFrameworks an open source C++ toolkit for creative coding. 
+* Συνοδευτικό κείμενο υποστήριξης του έργου:
+- Συναισθησία: διάδραση ήχου - εικόνας
+- Προσομείωση συγκρουσης σωματιδείων: particles
+- cutMotion: stop motion σε πραγματικό χρόνο ελεγχόμενο απο τον ήχο.
+
+* Οργανισμοί
+- [[http://igoumeninja.org/][igoumeninja]] : Aris Bezas personal website [[http://igoumeninja.org/en/pmwiki.php/Exposition/Exposition][personal expo]]
+- [[http://earlab.org/][EarLab]] : Experimental Arts Laboratory (Iannis Zannos and [[http://earlab.org/pmwiki.php?n=Members/HomePage][members]])
+- [[http://iperatou.com/][iperatou]] : Interactive Audiovisual Performances by Dakis Trentos, Omer Chatziserif, Aris Bezas
+
+
+* Special thanks to 
+- https://github.com/ofTheo/ofxKinect
+- [[http://forum.openframeworks.cc/index.php?topic=4947.0][oF community]]
+- Iannis Zannos
+- Omer Chatziserif
+- openFrameworks
+- SuperCollider

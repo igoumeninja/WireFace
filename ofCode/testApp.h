@@ -3,6 +3,11 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
+#include "ofxOsc.h"
+
+// listen on port 12345
+#define PORT 12345
+#define NUM_MSG_STRINGS 20
 
 class testApp : public ofBaseApp {
 	public:
@@ -44,6 +49,14 @@ class testApp : public ofBaseApp {
 
 		ofxCvContourFinder 	contourFinder;
 		
+		
+		ofxOscReceiver	receiver;
+
+		int				current_msg_string;
+		string		msg_strings[NUM_MSG_STRINGS];
+		float			timers[NUM_MSG_STRINGS];
+
+		
 		bool				bThreshWithOpenCV;
 		bool				bDrawPointCloud;
 
@@ -56,4 +69,5 @@ class testApp : public ofBaseApp {
 		
 		bool 				bRecord;
 		bool 				bPlayback;
+		
 };

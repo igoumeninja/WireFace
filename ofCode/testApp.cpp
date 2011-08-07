@@ -3,87 +3,119 @@
 
 //--------------------------------------------------------------
 void testApp::setup() {
+	{
+		ofSetCircleResolution(200);
+		//texScreen.allocate(ofGetWidth(), ofGetHeight(),GL_RGB);// GL_RGBA); 
+		ofSetBackgroundAuto(false);
+		ofEnableSmoothing();
+		ofEnableAlphaBlending(); 
+		cout << "listening for osc messages on port " << PORT << "\n";
+		receiver.setup( PORT );
 
-	kinect.init();
-	//kinect.init(true);  // shows infrared instead of RGB video image
-	//kinect.init(false, false);  // disable infrared/rgb video iamge (faster fps)
-	kinect.setVerbose(true);
-	kinect.open();
-	
-	// start with the live kinect source
-	kinectSource = &kinect;
+		current_msg_string = 0;
 
-	colorImg.allocate(kinect.width, kinect.height);
-	grayImage.allocate(kinect.width, kinect.height);
-	grayThreshNear.allocate(kinect.width, kinect.height);
-	grayThreshFar.allocate(kinect.width, kinect.height);
+		//glutSetCursor(GLUT_CURSOR_CYCLE);  // change cursor icon (http://pyopengl.sourceforge.net/documentation/manual/glutSetCursor.3GLUT.html)
+				
+		ofSetWindowTitle("WireFace: AudioVisual Performance ®reWorks");
+		ofSetFrameRate(24); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
+	}	//	setup
+	{
+		kinect.init();
+		//kinect.init(true);  // shows infrared instead of RGB video image
+		//kinect.init(false, false);  // disable infrared/rgb video iamge (faster fps)
+		kinect.setVerbose(true);
+		kinect.open();
+		
+		// start with the live kinect source
+		kinectSource = &kinect;
 
-	nearThreshold = 230;
-	farThreshold  = 70;
-	bThreshWithOpenCV = true;
-	
-	ofSetFrameRate(60);
+		colorImg.allocate(kinect.width, kinect.height);
+		grayImage.allocate(kinect.width, kinect.height);
+		grayThreshNear.allocate(kinect.width, kinect.height);
+		grayThreshFar.allocate(kinect.width, kinect.height);
 
-	bRecord = false;
-	bPlayback = false;
+//		nearThreshold = 230;
+//		farThreshold  = 70;
+		nearThreshold = 230;		
+		farThreshold  = 70;
+		bThreshWithOpenCV = true;
 
-	// zero the tilt on startup
-	angle = 0;
-	kinect.setCameraTiltAngle(angle);
-	
-	// start from the front
-	pointCloudRotationY = 180;
-	bDrawPointCloud = false;
+		bRecord = false;
+		bPlayback = false;
+
+		// zero the tilt on startup
+		angle = 0;
+		kinect.setCameraTiltAngle(angle);
+		
+		// start from the front
+		pointCloudRotationY = 180;
+		bDrawPointCloud = true;
+	}	//	kinect
 }
 
 //--------------------------------------------------------------
 void testApp::update() {
+	{
+		for ( int i=0; i<NUM_MSG_STRINGS; i++ )
+		{
+			if ( timers[i] < ofGetElapsedTimef() )
+				msg_strings[i] = "";
+		}
+
+		// check for waiting messages
+		while( receiver.hasWaitingMessages() )
+		{
+			// get the next message
+			ofxOscMessage m;
+			receiver.getNextMessage( &m );
+
+			// check for mouse moved message
+			if ( m.getAddress() == "rotateY" )
+			{
+				pointCloudRotationY = m.getArgAsInt32( 0 );
+				cout << m.getArgAsInt32( 0 ) << endl;
+			}
+			// check for mouse button message
+			else if ( m.getAddress() == "sakis" )
+			{
+
+			}
+			else
+			{
+				// unrecognized message: display on the bottom of the screen
+				string msg_string;
+				msg_string = m.getAddress();
+				msg_string += ": ";
+				for ( int i=0; i<m.getNumArgs(); i++ )
+				{
+					// get the argument type
+					msg_string += m.getArgTypeName( i );
+					msg_string += ":";
+					// display the argument - make sure we get the right type
+					if( m.getArgType( i ) == OFXOSC_TYPE_INT32 )
+						msg_string += ofToString( m.getArgAsInt32( i ) );
+					else if( m.getArgType( i ) == OFXOSC_TYPE_FLOAT )
+						msg_string += ofToString( m.getArgAsFloat( i ) );
+					else if( m.getArgType( i ) == OFXOSC_TYPE_STRING )
+						msg_string += m.getArgAsString( i );
+					else
+						msg_string += "unknown";
+				}
+				// add to the list of strings to display
+				msg_strings[current_msg_string] = msg_string;
+				timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
+				current_msg_string = ( current_msg_string + 1 ) % NUM_MSG_STRINGS;
+				// clear the next line
+				msg_strings[current_msg_string] = "";
+			}
+
+		}
+	
+	}	//	OSC 
 
 	ofBackground(0,0,0);
 	
 	kinectSource->update();
-	
-	// there is a new frame and we are connected
-	if(kinectSource->isFrameNew()) {
-	
-		// record ?
-		if(bRecord && kinectRecorder.isOpened()) {
-			kinectRecorder.newFrame(kinect.getRawDepthPixels(), kinect.getPixels());
-		}
-
-		// load grayscale depth image from the kinect source
-		grayImage.setFromPixels(kinectSource->getDepthPixels(), kinect.width, kinect.height);
- 	
-		// we do two thresholds - one for the far plane and one for the near plane
-		// we then do a cvAnd to get the pixels which are a union of the two thresholds 
-		if(bThreshWithOpenCV) {
-			grayThreshNear = grayImage;
-			grayThreshFar = grayImage;	
-			grayThreshNear.threshold(nearThreshold, true);
-			grayThreshFar.threshold(farThreshold);
-			cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
-		} else {
-		
-			// or we do it ourselves - show people how they can work with the pixels
-			unsigned char * pix = grayImage.getPixels();
-
-			int numPixels = grayImage.getWidth() * grayImage.getHeight();
-			for(int i = 0; i < numPixels; i++) {
-				if(pix[i] < nearThreshold && pix[i] > farThreshold) {
-					pix[i] = 255;
-				} else {
-					pix[i] = 0;
-				}
-			}
-		}
-
-		// update the cv images
-		grayImage.flagImageChanged();
-	
-		// find contours which are between the size of 20 pixels and 1/3 the w*h pixels.
-    	// also, find holes is set to true so we will get interior contours as well....
-    	contourFinder.findContours(grayImage, 10, (kinect.width*kinect.height)/2, 20, false);
-	}
 }
 
 //--------------------------------------------------------------
@@ -94,6 +126,7 @@ void testApp::draw() {
 	if(bDrawPointCloud) {
 		ofPushMatrix();
 		ofTranslate(420, 320);
+		ofScale(600, 600, 600);
 		// we need a proper camera class
 		drawPointCloud();
 		ofPopMatrix();
@@ -126,41 +159,39 @@ void testApp::draw() {
 	}
 	ofPopMatrix();
 	
-
-	// draw instructions
-	ofSetColor(255, 255, 255);
-	stringstream reportStream;
-	reportStream << "accel is: " << ofToString(kinect.getMksAccel().x, 2) << " / "
-								 << ofToString(kinect.getMksAccel().y, 2) << " / " 
-								 << ofToString(kinect.getMksAccel().z, 2) << endl
-				 << "press p to switch between images and point cloud, rotate the point cloud with the mouse" << endl
-				 << "using opencv threshold = " << bThreshWithOpenCV <<" (press spacebar)" << endl
-				 << "set near threshold " << nearThreshold << " (press: + -)" << endl
-				 << "set far threshold " << farThreshold << " (press: < >) num blobs found " << contourFinder.nBlobs
-				 	<< ", fps: " << ofGetFrameRate() << endl
-				 << "press c to close the connection and o to open it again, connection is: " << kinect.isConnected() << endl
-				 << "press UP and DOWN to change the tilt angle: " << angle << " degrees" << endl
-				 << "press r to record and q to playback, record is: " << bRecord << ", playback is: " << bPlayback;
-//	ofDrawBitmapString(reportStream.str(),20,652);
 }
 
 void testApp::drawPointCloud() {
-	ofScale(400, 400, 400);
+	
+	//ofScale(2*1200, 2*1200, 2*1200);	
+//	int w = 1280;
+//	int h = 960;
 	int w = 640;
 	int h = 480;
-	//ofRotateY(pointCloudRotationY);
-	ofRotateY(373);
+//	int w = 320;
+//	int h = 240;
+
+	ofRotateY(pointCloudRotationY);
+	
+	//ofRotateY(373);
 	float* distancePixels = kinect.getDistancePixels();
 	//glBegin(GL_POINTS);
 	glBegin(GL_POINTS);
-	int step = 2;
+
+	int step = 3;
 	for(int y = 0; y < h; y += step) {
 		for(int x = 0; x < w; x += step) {
 			ofPoint cur = kinect.getWorldCoordinateFor(x, y);
 			ofColor color = kinect.getCalibratedColorAt(x,y);
 			//glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
-			glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
-			//glColor3ub(1,1,1);						
+			//glColor3ub(255-(unsigned char)color.r,255-(unsigned char)color.g,255-(unsigned char)color.b);			
+			//glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
+			glColor3ub(255,255,255);
+//			if (cur.z > 1)		{
+//				cout << "+1" << endl;					
+//			}	else	{
+//				cout << "-1" << endl;					
+//			}			
 			glVertex3f(cur.x, cur.y, cur.z);
 		}
 	}
@@ -169,7 +200,7 @@ void testApp::drawPointCloud() {
 
 //--------------------------------------------------------------
 void testApp::exit() {
-	kinect.setCameraTiltAngle(0); // zero the tilt on exit
+	//kinect.setCameraTiltAngle(0); // zero the tilt on exit
 	kinect.close();
 	kinectPlayer.close();
 	kinectRecorder.close();
