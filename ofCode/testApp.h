@@ -51,10 +51,12 @@ class testApp : public ofBaseApp {
 		
 		
 		ofxOscReceiver	receiver;
-
 		int				current_msg_string;
 		string		msg_strings[NUM_MSG_STRINGS];
 		float			timers[NUM_MSG_STRINGS];
+
+		map<string, int> iv;
+		map<string, float> fv;		
 
 		
 		bool				bThreshWithOpenCV;

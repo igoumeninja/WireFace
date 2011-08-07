@@ -37,7 +37,7 @@ void testApp::setup() {
 //		nearThreshold = 230;
 //		farThreshold  = 70;
 		nearThreshold = 230;		
-		farThreshold  = 70;
+		farThreshold  = 20;
 		bThreshWithOpenCV = true;
 
 		bRecord = false;
@@ -51,6 +51,10 @@ void testApp::setup() {
 		pointCloudRotationY = 180;
 		bDrawPointCloud = true;
 	}	//	kinect
+	
+	{
+		iv["rBack"] = iv["gBack"] = iv["bBack"] = iv["aBack"] = 255;
+	}	// Initial Values
 }
 
 //--------------------------------------------------------------
@@ -75,51 +79,31 @@ void testApp::update() {
 				pointCloudRotationY = m.getArgAsInt32( 0 );
 				cout << m.getArgAsInt32( 0 ) << endl;
 			}
+			else if ( m.getAddress() == "int" )	{
+				iv[m.getArgAsString(0)] = m.getArgAsInt32(1);	
+				//printf("value = %d\n", m.getArgAsInt32(1));		
+			}
+			else if ( m.getAddress() == "float" )	{
+				fv[m.getArgAsString(0)] = m.getArgAsFloat(1);			
+			}
 			// check for mouse button message
 			else if ( m.getAddress() == "sakis" )
 			{
 
 			}
 			else
-			{
-				// unrecognized message: display on the bottom of the screen
-				string msg_string;
-				msg_string = m.getAddress();
-				msg_string += ": ";
-				for ( int i=0; i<m.getNumArgs(); i++ )
-				{
-					// get the argument type
-					msg_string += m.getArgTypeName( i );
-					msg_string += ":";
-					// display the argument - make sure we get the right type
-					if( m.getArgType( i ) == OFXOSC_TYPE_INT32 )
-						msg_string += ofToString( m.getArgAsInt32( i ) );
-					else if( m.getArgType( i ) == OFXOSC_TYPE_FLOAT )
-						msg_string += ofToString( m.getArgAsFloat( i ) );
-					else if( m.getArgType( i ) == OFXOSC_TYPE_STRING )
-						msg_string += m.getArgAsString( i );
-					else
-						msg_string += "unknown";
-				}
-				// add to the list of strings to display
-				msg_strings[current_msg_string] = msg_string;
-				timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
-				current_msg_string = ( current_msg_string + 1 ) % NUM_MSG_STRINGS;
-				// clear the next line
-				msg_strings[current_msg_string] = "";
-			}
-
+			{}
 		}
-	
 	}	//	OSC 
-
-	ofBackground(0,0,0);
 	
 	kinectSource->update();
+
 }
 
 //--------------------------------------------------------------
 void testApp::draw() {
+	ofSetColor(iv["rBack"], iv["gBack"], iv["bBack"], iv["aBack"]);
+	ofRect(0,0,ofGetWidth(), ofGetHeight());
 
 	ofSetColor(255, 255, 255);
 	
@@ -130,35 +114,7 @@ void testApp::draw() {
 		// we need a proper camera class
 		drawPointCloud();
 		ofPopMatrix();
-	} else {
-		if(!bPlayback) {
-			// draw from the live kinect
-			kinect.drawDepth(10, 10, 400, 300);
-			kinect.draw(420, 10, 400, 300);
-		} else {
-			// draw from the player
-			kinectPlayer.drawDepth(10, 10, 400, 300);
-			kinectPlayer.draw(420, 10, 400, 300);
-		}
-
-		grayImage.draw(10, 320, 400, 300);
-		contourFinder.draw(10, 320, 400, 300);
 	}
-	
-	// draw recording/playback indicators
-	ofPushMatrix();
-	ofTranslate(25, 25);
-	ofFill();
-	if(bRecord) {
-		ofSetColor(255, 0, 0);
-		ofCircle(0, 0, 10);
-	}
-	if(bPlayback) {
-		ofSetColor(0, 255, 0);
-		ofTriangle(-10, -10, -10, 10, 10, 0);
-	}
-	ofPopMatrix();
-	
 }
 
 void testApp::drawPointCloud() {
@@ -172,6 +128,7 @@ void testApp::drawPointCloud() {
 //	int h = 240;
 
 	ofRotateY(pointCloudRotationY);
+//	ofScale(1200, 1200, 1200);
 	
 	//ofRotateY(373);
 	float* distancePixels = kinect.getDistancePixels();
@@ -186,13 +143,12 @@ void testApp::drawPointCloud() {
 			//glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
 			//glColor3ub(255-(unsigned char)color.r,255-(unsigned char)color.g,255-(unsigned char)color.b);			
 			//glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
-			glColor3ub(255,255,255);
-//			if (cur.z > 1)		{
-//				cout << "+1" << endl;					
-//			}	else	{
-//				cout << "-1" << endl;					
-//			}			
-			glVertex3f(cur.x, cur.y, cur.z);
+			//glColor3ub(255,255,255);
+			glColor3ub(iv["rFace"], iv["gFace"], iv["bFace"]);	
+			//printf("%d\n",cur.z);		
+			if (cur.z > 10000)		{
+				glVertex3f(cur.x, cur.y, cur.z);
+			}
 		}
 	}
 	glEnd();
