@@ -1,5 +1,5 @@
 #+LaTeX_HEADER: \usepackage{fontspec,xltxtra,xunicode} 
-#+LaTeX_HEADER: \setromanfont[Mapping=tex-text]{Batang} 
+#+LaTeX_HEADER: \setromanfont[Mapping=tex-text]{Helvetica} 
 
 #+LATEX_HEADER: \usepackage{hyperref}
 #+LATEX_HEADER: \hypersetup{
@@ -10,41 +10,42 @@
 #+LATEX_HEADER:     urlcolor=blue
 #+LATEX_HEADER: }
 
+
+#+STYLE:    <link rel="stylesheet" type="text/css" href="http://ambiant.earlab.org/css/org.css" />
+
+
 #+TITLE: WireFace: an AudioVisual Installation
 #+AUTHOR: Aris Bezas
 
 
-* Περιγραφή του έργου
+* Description
 (Anti-Concept) 
-#+LATEX: \newline
-Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί όπως μπορεί να το αντιληφθεί μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. 
-#+LATEX: \newline
-Ημερομηνία δημιουργίας έργου:  Ιούλιος 2011
+Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί, όπως μπορεί να το αντιληφθεί μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. Η 3-διάστατη κάμερα επεξεργάζεται σε πραγματικό χρόνο το πρόσωπο του θεατή και το αποδίδει με την μορφή 3-διάστατου πλέγματος. Η κίνηση του μοντέλου και το ηχητικό περιβάλλον παραμετροποιούνται και μεταβάλλονται συναρτήση της κίνησης του παίχτη. 
+*Ένα εικαστικό παιχνίδι στον δυνητικό κόσμο της 3-διάστατης όρασης των υπολογιστών.*
 
-* Εγκατάσταση - Τεχνικές 
-- Mapping Projection
-- Video delay
-- SoundIn
-- Computer Vision
-- Sound Diffusion
-* Τεχνικά χαρακτηριστικά - setup:
-- SuperCollider an environment and programming language for real time audio synthesis and algorithmic composition. 
-- openFrameworks an open source C++ toolkit for creative coding. 
-* Συνοδευτικό κείμενο υποστήριξης του έργου:
+* Setup
+Για την εγκατάσταση χρησιμοποιείται η δωρεάν και ανοικτού κώδικα γλώσσα προγραμματισμού [[http://supercollider.sourceforge.net/][SuperCollider]] και το επίσης δωρεάν και ανοικτού κώδικα C++ σασί για προγραμματισμό οπτικοακουστικών εφαρμογών [[http://www.openframeworks.cc/][openFrameworks]]. Επίσης χρησιμοποιείται ο αισθητήρας Xbox kinect έτσι όπως ανπτύχθηκε απο την ανοικτή κοινότητα [[http://openkinect.org/wiki/Main_Page][OpenKinect]].
+
+* Technics
+- Όραση Υπολογιστών
 - Συναισθησία: διάδραση ήχου - εικόνας
-- Προσομείωση συγκρουσης σωματιδείων: particles
-- cutMotion: stop motion σε πραγματικό χρόνο ελεγχόμενο απο τον ήχο.
 
-* Οργανισμοί
-- [[http://igoumeninja.org/][igoumeninja]] : Aris Bezas personal website [[http://igoumeninja.org/en/pmwiki.php/Exposition/Exposition][personal expo]]
+* About
+- [[http://wireface.com/][WireFace official site]]
+- [[http://igoumeninja.org/][igoumeninja]] : Aris Bezas personal website
 - [[http://earlab.org/][EarLab]] : Experimental Arts Laboratory (Iannis Zannos and [[http://earlab.org/pmwiki.php?n=Members/HomePage][members]])
 - [[http://iperatou.com/][iperatou]] : Interactive Audiovisual Performances by Dakis Trentos, Omer Chatziserif, Aris Bezas
 
+* Date 
+Ιούλιος 2011
 
-* Special thanks to 
+* website
+Ο ιστότοπος [[http://wireface.com/]] είναι σχεδιασμένος και προγραμματισμένος σε [[http://processingjs.org/][ProcessingJS]] η οποιά αποτελεί μια διεπαφή της [[http://processing.org/][Processing]] για [[http://en.wikipedia.org/wiki/JavaScript][JavaScript]]. 
+Σχετικά link που χρησιμοποιήθηκαν:
+- [[http://processingjs.org/reference/articles/RenderingModes][Rendering Modes]]
+
+* Special thanks 
 - https://github.com/ofTheo/ofxKinect
 - [[http://forum.openframeworks.cc/index.php?topic=4947.0][oF community]]
-- Iannis Zannos
-- Omer Chatziserif
 - openFrameworks
 - SuperCollider

@@ -11,6 +11,8 @@ void testApp::setup() {
 		ofEnableAlphaBlending(); 
 		cout << "listening for osc messages on port " << PORT << "\n";
 		receiver.setup( PORT );
+		
+		sender.setup( "localhost", SC_PORT );
 
 		current_msg_string = 0;
 
@@ -18,6 +20,7 @@ void testApp::setup() {
 				
 		ofSetWindowTitle("WireFace: AudioVisual Performance ®reWorks");
 		ofSetFrameRate(24); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
+		ofSetVerticalSync(false);
 	}	//	setup
 	{
 		kinect.init();
@@ -37,8 +40,8 @@ void testApp::setup() {
 //		nearThreshold = 230;
 //		farThreshold  = 70;
 		nearThreshold = 230;		
-		farThreshold  = 20;
-		bThreshWithOpenCV = true;
+		farThreshold  = 70;
+		bThreshWithOpenCV = false;
 
 		bRecord = false;
 		bPlayback = false;
@@ -54,12 +57,65 @@ void testApp::setup() {
 	
 	{
 		iv["rBack"] = iv["gBack"] = iv["bBack"] = iv["aBack"] = 255;
+		iv["rFace"] = iv["gFace"] = iv["bFace"] = 0;
+		iv["rotateY"] = 180;
 	}	// Initial Values
 }
 
 //--------------------------------------------------------------
 void testApp::update() {
+	ofBackground(0,0,0);
+	
+	kinectSource->update();
+	
+	// there is a new frame and we are connected
+	if(kinectSource->isFrameNew()) {
+	
+		// load grayscale depth image from the kinect source
+		grayImage.setFromPixels(kinectSource->getDepthPixels(), kinect.width, kinect.height);
+ 	
+		// we do two thresholds - one for the far plane and one for the near plane
+		// we then do a cvAnd to get the pixels which are a union of the two thresholds 
+		if(bThreshWithOpenCV) {
+			grayThreshNear = grayImage;
+			grayThreshFar = grayImage;	
+			grayThreshNear.threshold(nearThreshold, true);
+			grayThreshFar.threshold(farThreshold);
+			cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+		} else {
+		
+			// or we do it ourselves - show people how they can work with the pixels
+			unsigned char * pix = grayImage.getPixels();
+
+			int numPixels = grayImage.getWidth() * grayImage.getHeight();
+			for(int i = 0; i < numPixels; i++) {
+				if(pix[i] < nearThreshold && pix[i] > farThreshold) {
+					pix[i] = 255;
+				} else {
+					pix[i] = 0;
+				}
+			}
+		}
+
+		// update the cv images
+		grayImage.flagImageChanged();
+	
+		// find contours which are between the size of 20 pixels and 1/3 the w*h pixels.
+    	// also, find holes is set to true so we will get interior contours as well....
+    	contourFinder.findContours(grayImage, 1, (kinect.width*kinect.height)/2, 20, false);
+		
+		ofxOscMessage m;
+		m.setAddress( "nBlobs" );
+		m.addIntArg( contourFinder.nBlobs );
+		sender.sendMessage( m );
+		
+		cout << contourFinder.nBlobs << endl;
+		
+	}
+
 	{
+	
+	
 		for ( int i=0; i<NUM_MSG_STRINGS; i++ )
 		{
 			if ( timers[i] < ofGetElapsedTimef() )
@@ -96,8 +152,6 @@ void testApp::update() {
 		}
 	}	//	OSC 
 	
-	kinectSource->update();
-
 }
 
 //--------------------------------------------------------------
@@ -127,26 +181,26 @@ void testApp::drawPointCloud() {
 //	int w = 320;
 //	int h = 240;
 
-	ofRotateY(pointCloudRotationY);
+	ofRotateY(iv["rotateY"]);
+	ofRotateX(iv["rotateX"]);
 //	ofScale(1200, 1200, 1200);
 	
 	//ofRotateY(373);
 	float* distancePixels = kinect.getDistancePixels();
 	//glBegin(GL_POINTS);
 	glBegin(GL_POINTS);
-
 	int step = 3;
 	for(int y = 0; y < h; y += step) {
 		for(int x = 0; x < w; x += step) {
 			ofPoint cur = kinect.getWorldCoordinateFor(x, y);
 			ofColor color = kinect.getCalibratedColorAt(x,y);
-			//glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
+			glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
 			//glColor3ub(255-(unsigned char)color.r,255-(unsigned char)color.g,255-(unsigned char)color.b);			
 			//glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
 			//glColor3ub(255,255,255);
-			glColor3ub(iv["rFace"], iv["gFace"], iv["bFace"]);	
-			//printf("%d\n",cur.z);		
-			if (cur.z > 10000)		{
+			//glColor3ub(iv["rFace"], iv["gFace"], iv["bFace"]);	
+//			printf("%f\n",cur.z);		
+			if (cur.z < 1.5)		{
 				glVertex3f(cur.x, cur.y, cur.z);
 			}
 		}
@@ -244,7 +298,7 @@ void testApp::keyPressed (int key) {
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y) {
-	pointCloudRotationY = x;
+	//pointCloudRotationY = x;
 }
 
 //--------------------------------------------------------------

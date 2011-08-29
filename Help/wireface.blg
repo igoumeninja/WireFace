@@ -1,0 +1,5 @@
+[4] biber-darwin:197> INFO - This is biber 0.9.3
+[5] biber-darwin:198> INFO - Logfile is '/Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.blg'
+[6] biber-darwin:205> INFO - === Biber version 0.9.3
+[8] biber-darwin:206> INFO - === Fri Aug 12, 2011, 14:44:32
+[1223] Biber.pm:213> FATAL - Cannot find control file '/Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.bcf'! - did you pass the "backend=biber" option to BibLaTeX?

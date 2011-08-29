@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>WireFace: an AudioVisual Installation</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2011-08-07 11:15:06 EEST"/>
+<meta name="generated" content="2011-08-12 14:46:36 EEST"/>
 <meta name="author" content="Aris Bezas"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -54,6 +54,7 @@ lang="en" xml:lang="en">
                                  font-weight:bold; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="http://ambiant.earlab.org/css/org.css" />
 <script type="text/javascript">
 <!--/*--><![CDATA[/*><!--*/
  function CodeHighlightOn(elem, id)
@@ -84,88 +85,83 @@ lang="en" xml:lang="en">
 <h1 class="title">WireFace: an AudioVisual Installation</h1>
 
 
+
+
+
+
+
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 Περιγραφή του έργου </a></li>
-<li><a href="#sec-2">2 Εγκατάσταση - Τεχνικές </a></li>
-<li><a href="#sec-3">3 Τεχνικά χαρακτηριστικά - setup: </a></li>
-<li><a href="#sec-4">4 Συνοδευτικό κείμενο υποστήριξης του έργου: </a></li>
-<li><a href="#sec-5">5 Οργανισμοί </a></li>
-<li><a href="#sec-6">6 Special thanks to </a></li>
+<li><a href="#sec-1">1 Description </a></li>
+<li><a href="#sec-2">2 Setup </a></li>
+<li><a href="#sec-3">3 Technics </a></li>
+<li><a href="#sec-4">4 About </a></li>
+<li><a href="#sec-5">5 Date </a></li>
+<li><a href="#sec-6">6 website </a></li>
+<li><a href="#sec-7">7 Special thanks </a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Περιγραφή του έργου </h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> Description </h2>
 <div class="outline-text-2" id="text-1">
 
 <p>(Anti-Concept) 
-Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί όπως μπορεί να το αντιληφθεί μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. 
-<b>Ημερομηνία δημιουργίας έργου:  Ιούλιος 2011</b>
+Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί, όπως μπορεί να το αντιληφθεί μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. Η 3-διάστατη κάμερα επεξεργάζεται σε πραγματικό χρόνο το πρόσωπο του θεατή και το αποδίδει με την μορφή 3-διάστατου πλέγματος. Η κίνηση του μοντέλου και το ηχητικό περιβάλλον παραμετροποιούνται και μεταβάλλονται συναρτήση της κίνησης του παίχτη. 
+<b>Ένα εικαστικό παιχνίδι στον δυνητικό κόσμο της 3-διάστατης όρασης των υπολογιστών.</b>
 </p>
 </div>
 
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Εγκατάσταση - Τεχνικές </h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> Setup </h2>
 <div class="outline-text-2" id="text-2">
 
-<ul>
-<li>
-Mapping Projection
-</li>
-<li>
-Video delay
-</li>
-<li>
-SoundIn
-</li>
-<li>
-Computer Vision
-</li>
-<li>
-Sound Diffusion
-</li>
-</ul>
-
+<p>Για την εγκατάσταση χρησιμοποιείται η δωρεάν και ανοικτού κώδικα γλώσσα προγραμματισμού <a href="http://supercollider.sourceforge.net/">SuperCollider</a> και το επίσης δωρεάν και ανοικτού κώδικα C++ σασί για προγραμματισμό οπτικοακουστικών εφαρμογών <a href="http://www.openframeworks.cc/">openFrameworks</a>. Επίσης χρησιμοποιείται ο αισθητήρας Xbox kinect έτσι όπως ανπτύχθηκε απο την ανοικτή κοινότητα <a href="http://openkinect.org/wiki/Main_Page">OpenKinect</a>.
+</p>
 </div>
 
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Τεχνικά χαρακτηριστικά - setup: </h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> Technics </h2>
 <div class="outline-text-2" id="text-3">
 
 <ul>
 <li>
-SuperCollider an environment and programming language for real time audio synthesis and algorithmic composition. 
+Όραση Υπολογιστών
 </li>
 <li>
-openFrameworks an open source C++ toolkit for creative coding. 
+Συναισθησία: διάδραση ήχου - εικόνας
 </li>
 </ul>
+
 
 </div>
 
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> Συνοδευτικό κείμενο υποστήριξης του έργου: </h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> About </h2>
 <div class="outline-text-2" id="text-4">
 
 <ul>
 <li>
-Συναισθησία: διάδραση ήχου - εικόνας
+<a href="http://wireface.com/">WireFace official site</a>
 </li>
 <li>
-Προσομείωση συγκρουσης σωματιδείων: particles
+<a href="http://igoumeninja.org/">igoumeninja</a> : Aris Bezas personal website
 </li>
 <li>
-cutMotion: stop motion σε πραγματικό χρόνο ελεγχόμενο απο τον ήχο.
+<a href="http://earlab.org/">EarLab</a> : Experimental Arts Laboratory (Iannis Zannos and <a href="http://earlab.org/pmwiki.php?n=Members/HomePage">members</a>)
+</li>
+<li>
+<a href="http://iperatou.com/">iperatou</a> : Interactive Audiovisual Performances by Dakis Trentos, Omer Chatziserif, Aris Bezas
 </li>
 </ul>
 
@@ -175,29 +171,35 @@ cutMotion: stop motion σε πραγματικό χρόνο ελεγχόμενο
 </div>
 
 <div id="outline-container-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Οργανισμοί </h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> Date </h2>
 <div class="outline-text-2" id="text-5">
 
-<ul>
-<li>
-<a href="http://igoumeninja.org/">igoumeninja</a> : Aris Bezas personal website <a href="http://igoumeninja.org/en/pmwiki.php/Exposition/Exposition">personal expo</a>
-</li>
-<li>
-<a href="http://earlab.org/">EarLab</a> : Experimental Arts Laboratory (Iannis Zannos and <a href="http://earlab.org/pmwiki.php?n=Members/HomePage">members</a>)
-</li>
-<li>
-<a href="http://iperatou.com/">iperatou</a> : Interactive Audiovisual Performances by Dakis Trentos, Omer Chatziserif, Aris Bezas
-
-</li>
-</ul>
-
+<p>Ιούλιος 2011
+</p>
 </div>
 
 </div>
 
 <div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> Special thanks to </h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> website </h2>
 <div class="outline-text-2" id="text-6">
+
+<p>Ο ιστότοπος <a href="http://wireface.com/">http://wireface.com/</a> είναι σχεδιασμένος και προγραμματισμένος σε <a href="http://processingjs.org/">ProcessingJS</a> η οποιά αποτελεί μια διεπαφή της <a href="http://processing.org/">Processing</a> για <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>. 
+Σχετικά link που χρησιμοποιήθηκαν:
+</p><ul>
+<li>
+<a href="http://processingjs.org/reference/articles/RenderingModes">Rendering Modes</a>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Special thanks </h2>
+<div class="outline-text-2" id="text-7">
 
 <ul>
 <li>
@@ -205,12 +207,6 @@ cutMotion: stop motion σε πραγματικό χρόνο ελεγχόμενο
 </li>
 <li>
 <a href="http://forum.openframeworks.cc/index.php?topic=4947.0">oF community</a>
-</li>
-<li>
-Iannis Zannos
-</li>
-<li>
-Omer Chatziserif
 </li>
 <li>
 openFrameworks
@@ -225,7 +221,7 @@ SuperCollider
 <div id="postamble">
 <p class="author"> Author: Aris Bezas
 </p>
-<p class="date"> Date: 2011-08-07 11:15:06 EEST</p>
+<p class="date"> Date: 2011-08-12 14:46:36 EEST</p>
 <p class="creator">HTML generated by org-mode 7.4 in emacs 23</p>
 </div>
 </div>
