@@ -194,10 +194,10 @@ void testApp::drawPointCloud() {
 		for(int x = 0; x < w; x += step) {
 			ofPoint cur = kinect.getWorldCoordinateFor(x, y);
 			ofColor color = kinect.getCalibratedColorAt(x,y);
-			glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
+			//glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
 			//glColor3ub(255-(unsigned char)color.r,255-(unsigned char)color.g,255-(unsigned char)color.b);			
 			//glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
-			//glColor3ub(255,255,255);
+			glColor3ub(0,0,0);
 			//glColor3ub(iv["rFace"], iv["gFace"], iv["bFace"]);	
 //			printf("%f\n",cur.z);		
 			if (cur.z < 1.5)		{

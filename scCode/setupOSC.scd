@@ -3,7 +3,7 @@ OF.int("rotateY",230);
 
 //:Rotate circle
 ~delay = (1/24);
-~angleScale = 1;
+~angleScale = 2;
 {
 	inf.do { |i|
 		NetAddr("localhost", 12345).sendMsg("int","rotateY", i*~angleScale);
