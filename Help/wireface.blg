@@ -1,0 +1,9 @@
+[1] biber-darwin:197> INFO - This is biber 0.9.3
+[2] biber-darwin:198> INFO - Logfile is '/Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.blg'
+[2] biber-darwin:205> INFO - === Biber version 0.9.3
+[2] biber-darwin:206> INFO - === Fri Sep  9, 2011, 15:52:22
+[4] Biber.pm:320> INFO - Reading /Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.bcf
+[611] Biber.pm:596> INFO - Found 0 citekeys in bib section 0
+[611] Biber.pm:613> WARN - The file '/Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.bcf' does not contain any citations!
+[706] BBL.pm:392> INFO - Writing '/Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.bbl' with encoding 'UTF-8'
+[707] BBL.pm:451> INFO - Output to /Users/fou/Dropbox/notes/multimedia/projects/wireface/Help/wireface.bbl

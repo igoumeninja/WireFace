@@ -1,0 +1,18 @@
+#+Latex_CLASS: foudoc_II
+#+STYLE:    <link rel="stylesheet" type="text/css" href="http://ambiant.earlab.org/css/org.css" />
+
+
+#+TITLE: WireFace: my personal notes about avii(AudioVisualInteractiveInstallation)
+#+AUTHOR: Aris Bezas
+#+DATE: <2011-07-01 Fri>
+
+
+
+
+
+* kinect
+
+** CV
+
+*** https://github.com/mszarski/KinectPongDemo/blob/master/src/pongDemo.cpp
+

@@ -1,0 +1,37 @@
+Καλησπέρα Εύη
+
+Μια σύντομη περιγραφή του έργου χωρίς τεχνικά χαρακτηριστικά είνια η ακολουθη:
+
+Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί, όπως μπορεί να το αντιληφθεί μια μηχανή. 
+Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. 
+Η 3-διάστατη κάμερα επεξεργάζεται σε πραγματικό χρόνο το πρόσωπο του θεατή και το αποδίδει με την μορφή 3-διάστατου πλέγματος. 
+Η κίνηση του μοντέλου και το ηχητικό περιβάλλον παραμετροποιούνται και μεταβάλλονται συναρτήση της κίνησης του παίχτη. 
+
+Ένα εικαστικό παιχνίδι στον δυνητικό κόσμο της 3-διάστατης όρασης των υπολογιστών.*
+
+Όσο αφορά την εγκατάσταση θα περιλαμβάνει μια προβολή (3.5 μ x 2.5 μ) και δυο ηχεία - monitor στα δεξιά και τα αριστερά της προβολής.
+Ο επισκέπτης σε συγκεκριμένη θέση απέναντι απο την προβολή, θα σκανάρεται (κυρίως το πρόσωπο-wireface) απο 3διάστατη κάμερα (kinect) θα μετατρέπεται το είδωλο του σε 3διάστατο πλέγμα.
+Η κίνηση του θα δημιουργεί και θα επιρεάζει το ηχητικό περιβάλλον της εγκατάστασης.
+
+Ένα σύντομο cv, 
+
+Aris Bezas
+AudioVisual and ElectroMechanical Interactive Installations
+
+Mechanical Engineer
+phD student at AVARTS Ionian University
+
+http://igoumeninja.org/
+
+tools: SuperCollider, openFrameworks, Processing, Arduino
+projects: Biennale Skopje http://igoumeninja.org/en/pmwiki.php/Exposition-Performances/SkopjeBiennale
+live performances: http://igoumeninja.org/en/pmwiki.php/Exposition-Performances/Anakata, http://igoumeninja.org/en/pmwiki.php/Exposition-Performances/StrangeScreen
+web art: http://igoumeninja.org/en/pmwiki.php/Exposition-InteractiveSketches/Exposition-InteractiveSketches
+
+Αν χρειάζεσαι κάτι άλλο ή περισσότερες πληροφορίες ενημέρωσε με.
+
+Καλό απόγευμα
+
+'Αρης
+
+
