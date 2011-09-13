@@ -2,7 +2,7 @@
 //:-------
 
 
-//:PatternProxy?
+//:PatternProxy
 ~angle = 0;
 ~rotDur = 0.1;
 ~angleStep = 5;
@@ -14,11 +14,11 @@
 	Posc(
 		\dur, ~rotDur,
 	 	\dest,  [NetAddr.localAddr, NetAddr("localhost", 57120)],
-		\msg, Pseq([['rotY', Pseq([1], 10)]], inf)
+		\msg, Pseq([['rotY']], inf)
 	);
 );	
 
-// Precieve
+//:Precieve
 Preceive(
 	'rotY' -> {
 		~angle = ~angle + ~angleStep;

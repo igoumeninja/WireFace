@@ -12,7 +12,7 @@ OSCresponderNode(n, '/scale', { |t,r,msg|
 // Randomness
 ~randomnessSpec = ControlSpec(0,0.1, \lin);
 OSCresponderNode(n, '/randomness', { |t,r,msg| 
-	OF.randomness(~randomnessSpec.map(msg[1]);
+	OF.randomness(~randomnessSpec.map(msg[1]));
 }).add;
 
 
@@ -20,6 +20,7 @@ OSCresponderNode(n, '/randomness', { |t,r,msg|
 ~rotYSpec = ControlSpec(360.0, 0.0, \lin);
 ~rotXSpec = ControlSpec(-180.0, 180.0, \lin);
 OSCresponderNode(n, '/rotate', { |t,r,msg| 
+	y.set(\freqShift, msg[1]);	
 	OF.rotY(~rotYSpec.map(msg[2]));
 	OF.rotX(~rotXSpec.map(msg[1]));
 }).add;
@@ -35,9 +36,11 @@ OSCresponderNode(n, '/loopRotate', { |t,r,msg|
 	if( msg[1] == 1,{
 		OF.background(0);
 		OF.aBack(0);
-		~pat.play;		
+		~pat.play;
+		y.set(\bufnum, rrand(0,5).asInteger);		
 	},{
 		~pat.stop;
+		y.set(\bufnum, rrand(0,5).asInteger);		
 	});
 }).add;
 
@@ -78,7 +81,7 @@ OSCresponderNode(n, '/gBack', { |t,r,msg|
 OSCresponderNode(n, '/bBack', { |t,r,msg| 
 	OF.bBack(~bBackSpec.map(msg[1]));
 }).add;
-~aBackSpec = ControlSpec(0,255, \lin);
+~aBackSpec = ControlSpec(0,55, \lin);
 OSCresponderNode(n, '/aBack', { |t,r,msg| 
 	OF.aBack(~aBackSpec.map(msg[1]));
 }).add;
@@ -165,51 +168,89 @@ OSCresponderNode(n, '/ampBuf', { |t,r,msg|
 // Crotale
 OSCresponderNode(n, '/crataleNote/1/1', { |t,r,msg| 
 	if( msg[1] == 1,{
-		"1".postln;
 		Synth("PMCrotale", ["midi", 60, "tone", 3]);
+		OF.rFace(255);
+		OF.gFace(0);
+		OF.bFace(255);
+		OF.aFace(255);						
 	},{
-		"0".postln;
-		Synth("PMCrotale", ["midi", 60, "tone", 4]);		
+		Synth("PMCrotale", ["midi", 72, "tone", 1]);
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(255);
+		OF.aFace(255);						
+		
 	});
 
 }).add;	
 OSCresponderNode(n, '/crataleNote/2/1', { |t,r,msg| 
 	if( msg[1] == 1,{
-		"1".postln;
 		Synth("PMCrotale", ["midi", 62, "tone", 3]);
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(0);
+		OF.aFace(255);						
+		
 	},{
-		"0".postln;
-		//Synth("PMCrotale", ["midi", 62, "tone", 4]);		
+		Synth("PMCrotale", ["midi", 74, "tone", 3]);	
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(255);
+		OF.aFace(255);						
+		
 	});
 
 }).add;	
 OSCresponderNode(n, '/crataleNote/3/1', { |t,r,msg| 
 	if( msg[1] == 1,{
-		"1".postln;
 		Synth("PMCrotale", ["midi", 64, "tone", 3]);
+		OF.rFace(255);
+		OF.gFace(0);
+		OF.bFace(0);
+		OF.aFace(255);						
+		
 	},{
-		"0".postln;
-		//Synth("PMCrotale", ["midi", 64, "tone", 4]);		
+		Synth("PMCrotale", ["midi", 76, "tone", 2]);
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(255);
+		OF.aFace(255);						
+		
 	});
 
 }).add;	
 OSCresponderNode(n, '/crataleNote/4/1', { |t,r,msg| 
 	if( msg[1] == 1,{
-		"1".postln;
 		Synth("PMCrotale", ["midi", 67, "tone", 3]);
+		OF.rFace(0);
+		OF.gFace(255);
+		OF.bFace(0);
+		OF.aFace(255);						
+		
 	},{
-		"0".postln;
-		//Synth("PMCrotale", ["midi", 67, "tone", 4]);		
+		Synth("PMCrotale", ["midi", 79, "tone", 3]);
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(255);
+		OF.aFace(255);						
+		
 	});
 
 }).add;	
 OSCresponderNode(n, '/crataleNote/5/1', { |t,r,msg| 
 	if( msg[1] == 1,{
-		"1".postln;
 		Synth("PMCrotale", ["midi", 71, "tone", 3]);
+		OF.rFace(0);
+		OF.gFace(0);
+		OF.bFace(255);
+		OF.aFace(255);						
+		
 	},{
-		"0".postln;
-		//Synth("PMCrotale", ["midi", 71, "tone", 4]);		
+		Synth("PMCrotale", ["midi", 83, "tone", 4]);	
+		OF.rFace(255);
+		OF.gFace(255);
+		OF.bFace(255);
+		OF.aFace(255);						
 	});
 
 }).add;	

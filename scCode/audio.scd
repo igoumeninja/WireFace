@@ -19,20 +19,21 @@ SynthDef( "stagones",
 }).send(s);
 	
 // foubuf v.002
-SynthDef(\foubuf_002, {| out = 0, bufnum = 0, rate = 1, trigger = 1, loop = 1, pan = 0, level = 1 |
+SynthDef(\foubuf_002, {| out = 0, bufnum = 0, rate = 1, trigger = 1, loop = 1, pan = 0, level = 1, freqShift = 0 |
 	Out.ar(out,
-		Pan2.ar( 
-			PlayBuf.ar(1, 
-				bufnum, 
-				rate, 
-				trigger, 
-				0, 
-				loop
-			),
+		Pan2.ar(
+			FreqShift.ar(
+				PlayBuf.ar(1, 
+						bufnum, 
+						rate, 
+						trigger, 
+						0, 
+						loop
+				),
+				freqShift),
 			pan,
-			level
+			level)
 		)
-	)
 }).send(s);
 
 // Crotale
