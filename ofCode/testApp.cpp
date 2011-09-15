@@ -75,7 +75,7 @@ void testApp::update() {
 	//ofBackground(0,0,0);
 	
 	kinectSource->update();
-	
+	/*	
 	// there is a new frame and we are connected
 	if(kinectSource->isFrameNew()) {
 	
@@ -130,7 +130,7 @@ void testApp::update() {
 			
 			ofCircle(xPos, yPos, 50,50);
 
-		}
+		}  
 
 
 		if (contourFinder.nBlobs != bufferBlob) {
@@ -144,9 +144,11 @@ void testApp::update() {
 			bufferBlob = contourFinder.nBlobs;
 		}
 		
+
 		
 		
 	}
+	*/
 
 	{
 	

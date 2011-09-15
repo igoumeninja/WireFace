@@ -58,7 +58,7 @@ OSCresponderNode(n, '/speedRot', { |t,r,msg|
 }).add;
 
 // Camera
-~camDepthSpec = ControlSpec(0,50, \lin);
+~camDepthSpec = ControlSpec(0,10, \lin);
 OSCresponderNode(n, '/camDepth', { |t,r,msg| 
 	OF.camDepth(~camDepthSpec.map(msg[1]));
 }).add;
@@ -172,14 +172,11 @@ OSCresponderNode(n, '/crataleNote/1/1', { |t,r,msg|
 		OF.rFace(255);
 		OF.gFace(0);
 		OF.bFace(255);
-		OF.aFace(255);						
 	},{
 		Synth("PMCrotale", ["midi", 72, "tone", 1]);
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(255);
-		OF.aFace(255);						
-		
 	});
 
 }).add;	
@@ -189,15 +186,11 @@ OSCresponderNode(n, '/crataleNote/2/1', { |t,r,msg|
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(0);
-		OF.aFace(255);						
-		
 	},{
 		Synth("PMCrotale", ["midi", 74, "tone", 3]);	
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(255);
-		OF.aFace(255);						
-		
 	});
 
 }).add;	
@@ -207,15 +200,11 @@ OSCresponderNode(n, '/crataleNote/3/1', { |t,r,msg|
 		OF.rFace(255);
 		OF.gFace(0);
 		OF.bFace(0);
-		OF.aFace(255);						
-		
 	},{
 		Synth("PMCrotale", ["midi", 76, "tone", 2]);
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(255);
-		OF.aFace(255);						
-		
 	});
 
 }).add;	
@@ -225,15 +214,11 @@ OSCresponderNode(n, '/crataleNote/4/1', { |t,r,msg|
 		OF.rFace(0);
 		OF.gFace(255);
 		OF.bFace(0);
-		OF.aFace(255);						
-		
 	},{
 		Synth("PMCrotale", ["midi", 79, "tone", 3]);
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(255);
-		OF.aFace(255);						
-		
 	});
 
 }).add;	
@@ -243,14 +228,11 @@ OSCresponderNode(n, '/crataleNote/5/1', { |t,r,msg|
 		OF.rFace(0);
 		OF.gFace(0);
 		OF.bFace(255);
-		OF.aFace(255);						
-		
 	},{
 		Synth("PMCrotale", ["midi", 83, "tone", 4]);	
 		OF.rFace(255);
 		OF.gFace(255);
 		OF.bFace(255);
-		OF.aFace(255);						
 	});
 
 }).add;	
