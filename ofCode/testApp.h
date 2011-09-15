@@ -59,7 +59,7 @@ class testApp : public ofBaseApp {
 		float			timers[NUM_MSG_STRINGS];
 		
 		float camDepth, rBack,gBack,bBack,aBack,rFace,gFace,bFace,aFace, rotX,rotY, scale, randomness;
-		int step, glBeginCase, bufferBlob;
+		int step, glBeginCase, bufferBlob, colorMode;
 		bool full;
 		map<string, int> iv;
 		map<string, float> fv;		

@@ -3,6 +3,17 @@
 
 //:Visuals
 
+// colorMode
+OSCresponderNode(n, '/colorMode', { |t,r,msg| 
+	if( msg[1] == 1,{
+		OF.colorMode(1);
+	},{
+		OF.colorMode(0);
+	});
+}).add;
+
+
+
 // Scale
 ~scaleSpec = ControlSpec(1, 10, \lin);
 OSCresponderNode(n, '/scale', { |t,r,msg| 
@@ -164,6 +175,12 @@ OSCresponderNode(n, '/bufRate', { |t,r,msg|
 OSCresponderNode(n, '/ampBuf', { |t,r,msg| 
 	y.set(\level, ~ampBufSpec.map(msg[1]));
 }).add;
+
+~freqShiftSpec = ControlSpec(-2000, 2000, \lin);
+OSCresponderNode(n, '/freqShift', { |t,r,msg| 
+	y.set(\freqShift, ~freqShiftSpec.map(msg[1]));
+}).add;
+
 
 // Crotale
 OSCresponderNode(n, '/crataleNote/1/1', { |t,r,msg| 

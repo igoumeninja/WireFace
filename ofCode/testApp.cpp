@@ -65,6 +65,7 @@ void testApp::setup() {
 		scale = 1;
 		
 		camDepth = 1.5;
+		colorMode = 0;
 	}	// Initial Values
 }
 
@@ -199,6 +200,7 @@ void testApp::update() {
 			else if ( m.getAddress() == "rotX" ) { rotX = m.getArgAsFloat(0); }													
 			else if ( m.getAddress() == "rotY" ) { rotY = m.getArgAsFloat(0); }
 			else if ( m.getAddress() == "step" ) { step = m.getArgAsInt32(0); }
+			else if ( m.getAddress() == "colorMode" ) { colorMode = m.getArgAsInt32(0); }			
 			else if ( m.getAddress() == "glBeginCase" ) { glBeginCase = m.getArgAsInt32(0); }																
 			else
 			{}
@@ -277,21 +279,53 @@ void testApp::drawPointCloud() {
 	  default : 
 	  	glBegin(GL_POINTS);	  
 	}	
-	for(int y = 0; y < h; y += step) {
-		for(int x = 0; x < w; x += step) {
-			ofPoint cur = kinect.getWorldCoordinateFor(x, y);
-			ofColor color = kinect.getCalibratedColorAt(x,y);
-			//glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
-			//glColor3ub(255-(unsigned char)color.r,255-(unsigned char)color.g,255-(unsigned char)color.b);			
-			//glColor3ub(250*(unsigned char)color.r,250*(unsigned char)color.r,250*(unsigned char)color.r);			
-			glColor4ub(rFace, gFace,bFace,aFace);
-			//glColor3ub(iv["rFace"], iv["gFace"], iv["bFace"]);	
-//			printf("%f\n",cur.z);		
-			if (cur.z < camDepth)		{
-				glVertex3f(scale*cur.x + ofRandom(0,randomness), scale*cur.y+ofRandom(0,randomness), scale*cur.z+ofRandom(0,randomness));
-				//glVertex3f(scale*cur.x, scale*cur.y, scale*cur.z);
+	switch (colorMode)	{
+	
+		case 0 :
+			for(int y = 0; y < h; y += step) {
+				for(int x = 0; x < w; x += step) {
+					ofPoint cur = kinect.getWorldCoordinateFor(x, y);
+					ofColor color = kinect.getCalibratedColorAt(x,y);
+					glColor3ub((unsigned char)color.r,(unsigned char)color.g,(unsigned char)color.b);
+					if (cur.z < camDepth)		{
+						glVertex3f(scale*cur.x + ofRandom(0,randomness), scale*cur.y+ofRandom(0,randomness), scale*cur.z+ofRandom(0,randomness));
+						//glVertex3f(scale*cur.x, scale*cur.y, scale*cur.z);
+					}
+				}
 			}
-		}
+
+		
+		break;
+
+		case 1 :
+			for(int y = 0; y < h; y += step) {
+				for(int x = 0; x < w; x += step) {
+					ofPoint cur = kinect.getWorldCoordinateFor(x, y);
+					ofColor color = kinect.getCalibratedColorAt(x,y);
+					glColor4ub(rFace, gFace,bFace,aFace);
+					if (cur.z < camDepth)		{
+						glVertex3f(scale*cur.x + ofRandom(0,randomness), scale*cur.y+ofRandom(0,randomness), scale*cur.z+ofRandom(0,randomness));
+						//glVertex3f(scale*cur.x, scale*cur.y, scale*cur.z);
+					}
+				}
+			}
+		
+		break;
+
+		case 2 :
+			for(int y = 0; y < h; y += step) {
+				for(int x = 0; x < w; x += step) {
+					ofPoint cur = kinect.getWorldCoordinateFor(x, y);
+					ofColor color = kinect.getCalibratedColorAt(x,y);
+					glColor4ub(rFace*ofRandom(0,1), gFace*ofRandom(0,1),bFace*ofRandom(0,1),aFace);
+					if (cur.z < camDepth)		{
+						glVertex3f(scale*cur.x + ofRandom(0,randomness), scale*cur.y+ofRandom(0,randomness), scale*cur.z+ofRandom(0,randomness));
+					}
+				}
+			}
+		
+		break;
+		
 	}
 	glEnd();
 }
