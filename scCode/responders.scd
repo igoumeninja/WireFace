@@ -31,7 +31,7 @@ OSCresponderNode(n, '/randomness', { |t,r,msg|
 ~rotYSpec = ControlSpec(360.0, 0.0, \lin);
 ~rotXSpec = ControlSpec(-180.0, 180.0, \lin);
 OSCresponderNode(n, '/rotate', { |t,r,msg| 
-	y.set(\freqShift, msg[1]);	
+	y.set(\freqShift, ~rotXSpec.map(msg[1]));	
 	OF.rotY(~rotYSpec.map(msg[2]));
 	OF.rotX(~rotXSpec.map(msg[1]));
 }).add;

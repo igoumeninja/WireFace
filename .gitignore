@@ -1,0 +1,28 @@
+# Ignore MacOS folder listing:
+.DS_Store
+
+# Ignore auto-save files from emacs:
+*.*~
+*~
+\#*
+*\#
+\.\#*
+
+# ignore zipped files
+*.zip
+
+# Ignore default SuperCollider object text archive
+archive.sctxar
+
+
+# Ignore Latex to pdf auxiliary file output
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.aux
+
+# Ignore some folders
+
+documentation
+

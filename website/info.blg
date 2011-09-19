@@ -1,9 +1,9 @@
-[15] biber-darwin:197> INFO - This is biber 0.9.3
-[16] biber-darwin:198> INFO - Logfile is '/Users/fou/Projects/wireface/website/info.blg'
-[17] biber-darwin:205> INFO - === Biber version 0.9.3
-[17] biber-darwin:206> INFO - === Wed Sep 14, 2011, 11:57:18
-[18] Biber.pm:320> INFO - Reading /Users/fou/Projects/wireface/website/info.bcf
-[623] Biber.pm:596> INFO - Found 0 citekeys in bib section 0
-[624] Biber.pm:613> WARN - The file '/Users/fou/Projects/wireface/website/info.bcf' does not contain any citations!
-[725] BBL.pm:392> INFO - Writing '/Users/fou/Projects/wireface/website/info.bbl' with encoding 'UTF-8'
-[726] BBL.pm:451> INFO - Output to /Users/fou/Projects/wireface/website/info.bbl
+[4] biber-darwin:197> INFO - This is biber 0.9.3
+[5] biber-darwin:198> INFO - Logfile is '/Users/fou/Projects/Artistic/Installation/wireface/website/info.blg'
+[5] biber-darwin:205> INFO - === Biber version 0.9.3
+[6] biber-darwin:206> INFO - === Mon Sep 19, 2011, 15:41:52
+[7] Biber.pm:320> INFO - Reading /Users/fou/Projects/Artistic/Installation/wireface/website/info.bcf
+[276] Biber.pm:596> INFO - Found 0 citekeys in bib section 0
+[277] Biber.pm:613> WARN - The file '/Users/fou/Projects/Artistic/Installation/wireface/website/info.bcf' does not contain any citations!
+[363] BBL.pm:392> INFO - Writing '/Users/fou/Projects/Artistic/Installation/wireface/website/info.bbl' with encoding 'UTF-8'
+[364] BBL.pm:451> INFO - Output to /Users/fou/Projects/Artistic/Installation/wireface/website/info.bbl

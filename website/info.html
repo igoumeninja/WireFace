@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+<title>WireFace: an AudioVisual Installation</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="<2011-07-01 Fri>"/>
+<meta name="author" content="Aris Bezas"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://ambiant.earlab.org/css/org.css" />
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+<div id="content">
+
+<h1 class="title">WireFace: an AudioVisual Installation</h1>
+
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Description </a></li>
+<li><a href="#sec-2">2 Setup </a></li>
+<li><a href="#sec-3">3 Installation setup </a></li>
+<li><a href="#sec-4">4 Technics </a></li>
+<li><a href="#sec-5">5 ScreenShots </a></li>
+<li><a href="#sec-6">6 About </a></li>
+<li><a href="#sec-7">7 website </a></li>
+<li><a href="#sec-8">8 Special thanks </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Description </h2>
+<div class="outline-text-2" id="text-1">
+
+<p>(Anti-Concept) 
+Το wireFace αποτελεί μια άλλη οπτική γωνία του φαίνεσθαί, όπως μπορεί να το αντιληφθεί 
+μια μηχανή. Ο παίχτης με την είσοδο του στο ορατό πεδίο της μηχανής εισοδέυει στον 
+δυνητικό κόσμο της εγκατάστασης και αλληλεπιδρά με αυτόν. Η 3-διάστατη κάμερα 
+επεξεργάζεται σε πραγματικό χρόνο το πρόσωπο του θεατή και το αποδίδει με την μορφή 
+3-διάστατου πλέγματος. Η κίνηση του μοντέλου και το ηχητικό περιβάλλον παραμετροποιούνται 
+και μεταβάλλονται συναρτήση της κίνησης του παίχτη. 
+<b>Ένα εικαστικό παιχνίδι στον δυνητικό κόσμο της 3-διάστατης όρασης των υπολογιστών.</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Setup </h2>
+<div class="outline-text-2" id="text-2">
+
+<p>Για την εγκατάσταση χρησιμοποιείται η δωρεάν και ανοικτού κώδικα γλώσσα προγραμματισμού
+<a href="http://supercollider.sourceforge.net/">SuperCollider</a> και το επίσης δωρεάν και ανοικτού κώδικα C++ σασί για προγραμματισμό οπτικοακουστικών 
+εφαρμογών <a href="http://www.openframeworks.cc/">openFrameworks</a>. Επίσης χρησιμοποιείται ο αισθητήρας Xbox kinect έτσι 
+όπως ανπτύχθηκε απο την ανοικτή κοινότητα <a href="http://openkinect.org/wiki/Main_Page">OpenKinect</a>. Τέλος για την δημιουργία της διεπαφής πολλαπλής αφής OSC
+στο iPad, χρησιμοποιήθηκε το λογισμικό - εφαρμογή iPad  <a href="http://hexler.net/software/touchosc">TouchOSC</a>.
+</p>
+<p>
+Μια εγκατάσταση - εφαρμογή φτιαγμένη απο εργαλεία ανοικτού κώδικα δεν θα μπορούσε να μην ήταν και αυτή 
+ανοικτή. Ο κώδικας βρίσκεται στο <a href="https://github.com/igoumeninja/WireFace">github</a>.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Installation setup </h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+<img src="./../installation/wireface_setup.png"  alt="./../installation/wireface_setup.png" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Technics </h2>
+<div class="outline-text-2" id="text-4">
+
+<ul>
+<li>
+Όραση Υπολογιστών
+</li>
+<li>
+Συναισθησία: διάδραση ήχου - εικόνας
+
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> ScreenShots </h2>
+<div class="outline-text-2" id="text-5">
+
+
+<div style="text-align: center">
+
+<embed type="application/x-shockwave-flash" src="https://picasaweb.google.com/s/c/bin/slideshow.swf" width="800" height="533" flashvars="host=picasaweb.google.com&hl=en_US&feat=flashalbum&RGB=0x000000&feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Figoumeninja%2Falbumid%2F5654026062207791953%3Falt%3Drss%26kind%3Dphoto%26hl%3Den_US" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> About </h2>
+<div class="outline-text-2" id="text-6">
+
+<ul>
+<li>
+<a href="http://wireface.com/">WireFace official site</a>
+</li>
+<li>
+<a href="http://igoumeninja.org/">igoumeninja</a> : Aris Bezas personal website
+</li>
+<li>
+<a href="http://earlab.org/">EarLab</a> : Experimental Arts Laboratory (Iannis Zannos and <a href="http://earlab.org/pmwiki.php?n=Members/HomePage">members</a>)
+</li>
+<li>
+<a href="http://iperatou.com/">iperatou</a> : Interactive Audiovisual Performances by Dakis Trentos, Omer Chatziserif, Aris Bezas
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> website </h2>
+<div class="outline-text-2" id="text-7">
+
+<p>Ο ιστότοπος <a href="http://wireface.com/">http://wireface.com/</a> είναι σχεδιασμένος και προγραμματισμένος σε
+<a href="http://processingjs.org/">ProcessingJS</a> η οποιά αποτελεί μια διεπαφή της <a href="http://processing.org/">Processing</a> για <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>. 
+</p>
+<ul>
+<li>
+ links:
+</li>
+<li>
+<a href="http://processingjs.org/reference/articles/RenderingModes">Rendering Modes</a>
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Special thanks </h2>
+<div class="outline-text-2" id="text-8">
+
+<ul>
+<li>
+<a href="https://github.com/ofTheo/ofxKinect">Theodore Watson</a>
+</li>
+<li>
+<a href="http://forum.openframeworks.cc/index.php?topic=4947.0">oF community</a>
+</li>
+<li>
+<a href="http://www.openframeworks.cc/">openFrameworks</a>
+</li>
+<li>
+<a href="http://supercolliderbook.net/">SuperCollider</a>
+</li>
+<li>
+<a href="http://earlab.org/">Iannis Zannos</a>
+</li>
+<li>
+<a href="http://www.earslap.com/">Batuhan Bozkurt</a>
+</li>
+<li>
+<a href="http://zepadovani.info">José Henrique Padovani</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div id="postamble">
+<p class="author"> Author: Aris Bezas
+</p>
+<p class="date"> Date: <2011-07-01 Fri></p>
+<p class="creator">HTML generated by org-mode 7.4 in emacs 23</p>
+</div>
+</div>
+</body>
+</html>
